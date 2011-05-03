@@ -1,3 +1,9 @@
 #!/bin/bash
 
-scalac src/*.scala -d classes
+CLASSES_DIR="classes"
+
+if [ ! -d $CLASSES_DIR ]; then
+  mkdir $CLASSES_DIR
+fi
+
+scalac src/*.scala -d $CLASSES_DIR
