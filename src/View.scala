@@ -4,14 +4,23 @@ class View(model:Model) extends MainFrame {
   
     title = "VirtualCut"
     
-    val menubar = new MenuBar
-    val menu = new Menu("Menu")
+    contents = new Panel() {
+      preferredSize = new Dimension(600,400)
+    }
+    
     val menuItemExit = new MenuItem("Exit")
     menuItemExit.tooltip = "Exit VirtualCut"
     
-    //menu.menus ::= menuItemExit
-    //menubar.menus ::= menu
-    
-    contents = {menubar}
+	menuBar = new MenuBar {   
+      contents += new Menu("Menu") {
+		val exitMenuItem = new MenuItem("Exit")
+		exitMenuItem.tooltip = "Exit VirtualCut"
+		
+        contents += exitMenuItem      
+        contents += new MenuItem(Action("Action item") { println(title) })       
+        contents += new Separator        
+        contents += new CheckMenuItem("Check me")
+      }
+    }
   
 }
