@@ -1,10 +1,14 @@
 #!/bin/bash
 
-CLASSES_DIR="classes"
-SOURCE_DIR="src"
+source ${0%/*}/config
 
-if [ ! -d $CLASSES_DIR ]; then
-  mkdir $CLASSES_DIR
+if [ ! -d $CLASSES_PATH ]; then
+  notice "Creating classes directory..."
+  mkdir $CLASSES_PATH
 fi
+ 
+notice "Building VirtualCut..."
+scalac $SOURCE_PATH/*.scala -d $CLASSES_PATH || error "Build failed."
+success "Building complete."
 
-scalac $SOURCE_DIR/*.scala -d $CLASSES_DIR
+exit 0

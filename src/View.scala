@@ -10,7 +10,7 @@ class View(model:Model) extends MainFrame {
     menuItemExit.tooltip = "Exit VirtualCut"
     
     //menu.menus ::= menuItemExit
-    menubar.menus ::= menu
+    //menubar.menus ::= menu
     
     contents = {menubar}
   

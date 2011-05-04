@@ -1,11 +1,15 @@
 #!/bin/bash
 
-CLASSES_DIR="classes"
+source ${0%/*}/config
 
-if [ ! -d $CLASSES_DIR ] || [ ! -f $CLASSES_DIR/VirtualCut.class ]; then
-  echo -e "You have to build VirtualCut first. Type \033[1;32m./build.sh\033[0m in the project directory."
-  exit 0
+notice "Checking for classes..."
+if [ ! -d $CLASSES_PATH ] || [ ! -f $CLASSES_PATH/VirtualCut.class ]; then
+  error "You have to build VirtualCut first. \n       Type ${GREEN}./build.sh${NORMAL} in the project directory."
 fi
 
-cd classes
-scala VirtualCut
+cd $CLASSES_PATH
+
+notice "Running VirtualCut..."
+scala VirtualCut || error "Cannot run VirtualCut."
+
+exit 0
