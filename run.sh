@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${0%/*}/config
+source ${0%/*}/config.inc.sh
 
 notice "Checking for classes..."
 if [ ! -d $CLASSES_PATH ] || [ ! -f $CLASSES_PATH/VirtualCut.class ]; then

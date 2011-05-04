@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${0%/*}/config
+source ${0%/*}/config.inc.sh
 
 if [ ! -d $CLASSES_PATH ]; then
   notice "Creating classes directory..."
