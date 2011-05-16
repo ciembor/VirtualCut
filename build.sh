@@ -8,6 +8,9 @@ if [ ! -d $CLASSES_PATH ]; then
 fi
  
 notice "Building VirtualCut..."
+#scalac $SOURCE_PATH/Model/*.scala -d $CLASSES_PATH || error "Build failed (Model)."
+#scalac $SOURCE_PATH/View/*.scala -d $CLASSES_PATH || error "Build failed (View)."
+#scalac $SOURCE_PATH/Controller/*.scala -d $CLASSES_PATH || error "Build failed (Controller)."
 scalac $SOURCE_PATH/*.scala -d $CLASSES_PATH || error "Build failed."
 success "Building complete."
 
