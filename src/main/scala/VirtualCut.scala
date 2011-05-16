@@ -1,4 +1,6 @@
 import swing._
+import javax.swing.JSpinner
+import javax.swing.SpinnerNumberModel
 
 object VirtualCut extends App {
 

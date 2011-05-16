@@ -1,4 +1,6 @@
 import swing._
+import javax.swing.JSpinner
+import javax.swing.SpinnerNumberModel
 
 class View(model:Model) extends MainFrame {
   title = "VirtualCut"
@@ -37,7 +39,10 @@ class View(model:Model) extends MainFrame {
   
     val parameters = new FlowPanel {
       contents += new Label("Tempo: ")
-      contents += new ComboBox(Seq("80", "100", "120", "140"))
+      val spinnerModel = new SpinnerNumberModel(120, 1, 300, 1)
+      val spinner = new JSpinner(spinnerModel)
+
+      contents += Component.wrap(spinner)
       contents += new Label("Metric: ")
       contents += new Label("Note: ")
     }
