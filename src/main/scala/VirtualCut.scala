@@ -1,6 +1,8 @@
-import swing._
-import javax.swing.JSpinner
-import javax.swing.SpinnerNumberModel
+package virtualcut
+
+import virtualcut.model._
+import virtualcut.view._
+import virtualcut.controller._
 
 object VirtualCut extends App {
 
