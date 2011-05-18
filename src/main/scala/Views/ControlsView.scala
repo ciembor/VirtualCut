@@ -7,7 +7,7 @@ import javax.swing.{UIManager}
 
 object ControlsView extends FlowPanel {
   
-  val pauseButton= new Button("pause") {
+  val pauseButton = new Button("pause") {
     icon = new ImageIcon(getClass.getResource("/Pause.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
@@ -28,7 +28,7 @@ object ControlsView extends FlowPanel {
   val saveSampleButton = new Button(Action("Save sample") { 
     SaveFileChooser.showDialog
     }) {
-    icon = UIManager.getIcon("FileView.floppyDriveIcon")
+    icon = new ImageIcon(getClass.getResource("/Save.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
   }

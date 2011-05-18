@@ -11,8 +11,7 @@ object MenuBarView extends MenuBar {
     val exitMenuItem = new MenuItem("Exit")
     exitMenuItem.tooltip = "Exit VirtualCut"
     //exitMenuItem.icon = UIManager.getIcon("FileView.floppyDriveIcon")
-    val openFile = new FileChooser()
-
+  
     val openMenuItem = new MenuItem(Action("Open file") {
       OpenFileChooser.showDialog
     })
@@ -20,7 +19,7 @@ object MenuBarView extends MenuBar {
 
     val saveFile = new FileChooser()
     val saveMenuItem = new MenuItem(Action("Save sample") {
-      SaveFileChooser.showSaveDialog(VirtualCut.view.container)
+      SaveFileChooser.showDialog
     })
     saveMenuItem.icon = UIManager.getIcon("FileView.floppyDriveIcon")
     
