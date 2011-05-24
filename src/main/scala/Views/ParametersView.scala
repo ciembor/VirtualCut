@@ -3,14 +3,17 @@ package view
 
 import swing._
 import javax.swing.JSpinner
-import javax.swing.SpinnerNumberModel
+import javax.swing.JComboBox
+import virtualcut.model.ParametersModel
 
-object ParametersView extends FlowPanel {
+object ParametersView extends FlowPanel() {
   contents += new Label("Tempo: ")
-  val spinnerModel = new SpinnerNumberModel(120:Double, 1, 300, 1)
-  val spinner = new JSpinner(spinnerModel)
-  contents += Component.wrap(spinner)
+  val tempo = new JSpinner(ParametersModel.tempo)
+  contents += Component.wrap(tempo)
   
   contents += new Label("Metric: ")
   contents += new Label("Note: ")
+  val note = new JComboBox(ParametersModel.note)
+  contents += Component.wrap(note)
+
 }
