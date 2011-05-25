@@ -4,19 +4,19 @@ package view {
   
   import virtualcut.model._
   import swing._
-  //import javax.swing.{UIManager}
+  import javax.swing.{UIManager}
 
   class View(model:Model) extends MainFrame {
     title = "VirtualCut"
-    //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+  //  UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+ //   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 //    contents = new Panel() {
  //     preferredSize = new Dimension(800,400)
 //    }
-  
+      preferredSize = new Dimension(800, 355)
     menuBar = MenuBarView
     
     val container:BoxPanel = new BoxPanel(Orientation.Vertical) {
-      preferredSize = new Dimension(800,400)
       contents += ParametersView
       contents += Component.wrap(WaveformView.pictureScrollPane)
       contents += ControlsView

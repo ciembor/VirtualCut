@@ -7,7 +7,7 @@ import javax.swing.{UIManager}
 
 object ControlsView extends FlowPanel {
   
-  minimumSize= new Dimension(300,100)
+ // minimumSize= new Dimension(300,100)
   
   val pauseButton = new Button("pause") {
     icon = new ImageIcon(getClass.getResource("/Pause.gif"))
