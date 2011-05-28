@@ -2,7 +2,7 @@ package virtualcut
 package view
 
 import swing._
-import virtualcut.view.WaveformView
+
 object SaveFileChooser extends FileChooser {
   def showDialog = {
     this.showSaveDialog(VirtualCut.view.container)
