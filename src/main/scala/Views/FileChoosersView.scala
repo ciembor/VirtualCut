@@ -5,14 +5,14 @@ import swing._
 
 object SaveFileChooser extends FileChooser {
   def showDialog = {
-    this.showSaveDialog(VirtualCut.view.container)
+    this.showSaveDialog(VirtualCut.Window.container)
   }
 }
 
 object OpenFileChooser extends FileChooser {
   def showDialog = {
-    this.showOpenDialog(VirtualCut.view.container)
-    WaveformView.setFile(this.selectedFile)
+    this.showOpenDialog(VirtualCut.Window.container)
+    TrackView.setFile(this.selectedFile)
   }
   
 }

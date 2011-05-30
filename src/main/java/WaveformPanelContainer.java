@@ -18,7 +18,6 @@ public class WaveformPanelContainer extends JPanel {
 
     public WaveformPanelContainer() {
         setLayout(new GridLayout(0,1));
-   
     }
 
     public void setAudioToDisplay(AudioInputStream audioInputStream){
