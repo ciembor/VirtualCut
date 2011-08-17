@@ -15,7 +15,8 @@ Now go to the created directory:
      cd VirtualCut
      
 Build __VirtualCut__ using __SBT__:
-
+     
+     sbt update
      sbt compile
      
 If everything went right, run __VirtualCut__
