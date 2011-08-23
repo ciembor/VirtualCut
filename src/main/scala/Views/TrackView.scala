@@ -5,7 +5,7 @@ import java.awt._
 import java.awt.event._
 import javax.swing._
 import javax.swing.border._
-import components._
+//import components._
 import waveform._
 import java.io._
 import javax.sound.sampled.AudioInputStream

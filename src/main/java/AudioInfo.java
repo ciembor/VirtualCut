@@ -13,6 +13,8 @@ import javax.sound.sampled.AudioInputStream;
 public class AudioInfo {
     private static final int NUM_BITS_PER_BYTE = 8;
 
+    private int[] test;
+
     private AudioInputStream audioInputStream;
     private int[][] samplesContainer;
 
