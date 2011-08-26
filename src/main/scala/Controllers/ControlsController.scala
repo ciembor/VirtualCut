@@ -1,6 +1,8 @@
 package virtualcut
 package controller
 
-object ControlsController {
+import virtualcut.view.ControlsView
+
+class ControlsController(controlsView:ControlsView) {
 
 }

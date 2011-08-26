@@ -4,8 +4,10 @@ package view
 import swing._
 import javax.swing.ImageIcon
 import javax.swing.{UIManager}
+import virtualcut.controller.TrackController
 
-object ControlsView extends FlowPanel {
+
+class ControlsView extends FlowPanel {
   
  // minimumSize= new Dimension(300,100)
   
@@ -28,7 +30,7 @@ object ControlsView extends FlowPanel {
   }
 
   val saveSampleButton = new Button(Action("Save sample") { 
-    SaveFileChooser.showDialog
+    VirtualCut.saveFileChooser.showDialog
     }) {
     icon = new ImageIcon(getClass.getResource("/Save.gif"))
     verticalTextPosition = Alignment.Bottom

@@ -10,21 +10,17 @@ import waveform._
 import java.io._
 import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.AudioSystem
+import virtualcut.model.TrackModel
 
-object TrackView extends JScrollPane {
-
-  // var file = new File("/home/ciembor/mr-magoo.wav");
-  var  file = new File("/home/ciembor/Alesis-Fusion-Bass-Loop.wav");
+class TrackView(trackModel:TrackModel) {
 
   var scrollPane = new JScrollPane
-  
-  def setFile(file: File) {
-    var container = new WaveformPanelContainer
-    var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
-    container.setAudioToDisplay(audioInputStream);
+  class Container(trackModel:TrackModel) extends WaveformPanelContainer
+  var container = new Container(trackModel)
+
+  def setView(trackModel:TrackModel) {
+    container.setAudioToDisplay(trackModel.getAudioInputStream);
     scrollPane.setViewportView(container)
   }
-
-  setFile(file)
 
 }

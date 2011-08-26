@@ -6,12 +6,12 @@ import javax.swing.JSpinner
 import javax.swing.JComboBox
 import virtualcut.model.ParametersModel
 
-object ParametersView extends FlowPanel() {
+class ParametersView(parametersModel:ParametersModel) extends FlowPanel {
   
-  val tempo = new JSpinner(ParametersModel.tempo)
-  val metric_top = new JSpinner(ParametersModel.metric_top)
-  val metric_bottom = new JComboBox(ParametersModel.metric_bottom)
-  val note = new JComboBox(ParametersModel.note)
+  val tempo = new JSpinner(parametersModel.tempo)
+  val metric_top = new JSpinner(parametersModel.metric_top)
+  val metric_bottom = new JComboBox(parametersModel.metric_bottom)
+  val note = new JComboBox(parametersModel.note)
   
   contents += new Label("Tempo: ")
   contents += Component.wrap(tempo)

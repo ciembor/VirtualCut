@@ -13,13 +13,13 @@ object MenuBarView extends MenuBar {
     //exitMenuItem.icon = UIManager.getIcon("FileView.floppyDriveIcon")
   
     val openMenuItem = new MenuItem(Action("Open file") {
-      OpenFileChooser.showDialog
+      VirtualCut.openFileChooser.showDialog
     })
     openMenuItem.icon = UIManager.getIcon("FileView.directoryIcon")
 
     val saveFile = new FileChooser()
     val saveMenuItem = new MenuItem(Action("Save sample") {
-      SaveFileChooser.showDialog
+      VirtualCut.saveFileChooser.showDialog
     })
     saveMenuItem.icon = UIManager.getIcon("FileView.floppyDriveIcon")
     
