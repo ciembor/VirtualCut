@@ -5,7 +5,6 @@ import javax.sound.sampled.AudioInputStream;
 import java.awt.*;
 import java.util.ArrayList;
 import virtualcut.model.TrackModel;
-
 /**
  * Created by IntelliJ IDEA.
  * User: Jonathan Simon
@@ -17,12 +16,12 @@ public class WaveformPanelContainer extends JPanel {
     private ArrayList singleChannelWaveformPanels = new ArrayList();
     private TrackModel trackModel = null;
 
-    public WaveformPanelContainer() {
+    public WaveformPanelContainer(TrackModel trackModel) {
         setLayout(new GridLayout(0,1));
         this.trackModel = trackModel;
     }
 
-    public void setAudioToDisplay(trackModel TrackModel){
+    public void setAudioToDisplay(TrackModel trackModel){
         singleChannelWaveformPanels = new ArrayList();
        // trackModel = new TrackModel(audioInputStream);
         for (int t=0; t<trackModel.getNumberOfChannels(); t++){

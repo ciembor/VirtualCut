@@ -12,7 +12,9 @@ import swing._
 
 object VirtualCut extends App {
 
-  var audioInputStream:AudioInputStream = null
+
+  var file = new File("/home/ciembor/mr-magoo.wav");
+  var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
  // var  file = new File("/home/ciembor/Alesis-Fusion-Bass-Loop.wav");
   var trackModel = new TrackModel(audioInputStream)
   var trackView = new TrackView(trackModel)
