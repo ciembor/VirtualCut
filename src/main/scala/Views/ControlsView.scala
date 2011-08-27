@@ -11,35 +11,47 @@ class ControlsView extends FlowPanel {
   
  // minimumSize= new Dimension(300,100)
   
-  val pauseButton = new Button("pause") {
+  object pauseButton extends Button("pause") {
     icon = new ImageIcon(getClass.getResource("/Pause.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
   }
         
-  val playButton = new Button("play") {
+  object playButton extends Button("play") {
     icon = new ImageIcon(getClass.getResource("/Play.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
   }
         
-  val stopButton = new Button("stop") {
+  object stopButton extends Button("stop") {
     icon = new ImageIcon(getClass.getResource("/Stop.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
   }
 
-  val saveSampleButton = new Button(Action("Save sample") { 
+  object saveSampleButton extends Button(Action("save sample") { 
     VirtualCut.saveFileChooser.showDialog
     }) {
     icon = new ImageIcon(getClass.getResource("/Save.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
   }
-        
+         
   contents += pauseButton
   contents += playButton
   contents += stopButton
   contents += saveSampleButton
+  
+  object ZoomPanel extends GridPanel(2,0) {
+    object zoomInButton extends Button("+") 
+    object zoomOutButton extends Button("-") 
+    
+    vGap = 3
+    
+    contents += zoomInButton
+    contents += zoomOutButton
+  }
+  
+  contents += ZoomPanel
   
 }
