@@ -22,7 +22,9 @@ public class WaveformPanelContainer extends JPanel {
     }
 
     public void setAudioToDisplay(TrackModel trackModel){
-        singleChannelWaveformPanels = new ArrayList();
+        this.trackModel = trackModel;
+        this.singleChannelWaveformPanels.clear();
+
        // trackModel = new TrackModel(audioInputStream);
         for (int t=0; t<trackModel.getNumberOfChannels(); t++){
             SingleWaveformPanel waveformPanel

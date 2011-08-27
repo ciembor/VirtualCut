@@ -18,6 +18,7 @@ class TrackController(trackModel: TrackModel, trackView: TrackView) {
   
   def setFile(file: File) {
     var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
+    trackModel.setAudio(audioInputStream);
     trackView.setView(trackModel)
   }
 

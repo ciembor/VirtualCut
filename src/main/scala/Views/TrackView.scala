@@ -19,6 +19,7 @@ class TrackView(trackModel:TrackModel) {
   var container = new Container(trackModel)
 
   def setView(trackModel:TrackModel) {
+    container = new Container(trackModel)
     container.setAudioToDisplay(trackModel);
     scrollPane.setViewportView(container)
   }
