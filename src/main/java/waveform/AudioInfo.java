@@ -14,7 +14,7 @@ public class AudioInfo {
     private static final int NUM_BITS_PER_BYTE = 8;
 
     private AudioInputStream audioInputStream;
-    private int[][] samplesContainer;
+    protected int[][] samplesContainer;
 
     //cached values
     protected int sampleMax = 0;
@@ -93,10 +93,6 @@ public class AudioInfo {
         }
 
         return toReturn;
-    }
-
-    public double getXScaleFactor(int panelWidth){
-        return (panelWidth / ((double) samplesContainer[0].length));
     }
 
     public double getYScaleFactor(int panelHeight){

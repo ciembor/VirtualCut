@@ -14,14 +14,16 @@ public class SingleWaveformPanel extends JPanel {
     protected static final Color REFERENCE_LINE_COLOR = Color.gray;
     protected static final Color WAVEFORM_COLOR = Color.orange;
 
-    private TrackModel helper;
+    private TrackModel model;
     private int channelIndex;
+    private double width;
     
-    public SingleWaveformPanel(TrackModel helper, int channelIndex) {
-        this.helper = helper;
+    public SingleWaveformPanel(TrackModel model, int channelIndex) {
+        this.model = model;
         this.channelIndex = channelIndex;
         setBackground(BACKGROUND_COLOR);
-        setPreferredSize(new Dimension(helper.getWidth(), 140));
+        width = model.getWidth() * model.getXScaleFactor(model.getWidth());
+        setPreferredSize(new Dimension((int)width, 140));
 
     }
 
@@ -32,7 +34,7 @@ public class SingleWaveformPanel extends JPanel {
         g.setColor(REFERENCE_LINE_COLOR);
         g.drawLine(0, lineHeight, (int)getWidth(), lineHeight);
 
-        drawWaveform(g, helper.getAudio(channelIndex));
+        drawWaveform(g, model.getAudio(channelIndex));
 
     }
 
@@ -45,8 +47,8 @@ public class SingleWaveformPanel extends JPanel {
         int oldY = (int) (getHeight() / 2);
         int xIndex = 0;
 
-        int increment = helper.getIncrement(helper.getXScaleFactor(getWidth()));
-    //    int increment = helper.getIncrement();
+        int increment = model.getIncrement(model.getXScaleFactor((int)width));
+    //    int increment = model.getIncrement();
         g.setColor(WAVEFORM_COLOR);
 
         int t = 0;
@@ -58,7 +60,7 @@ public class SingleWaveformPanel extends JPanel {
         }
 
         for (; t < samples.length; t += increment) {
-            double scaleFactor = helper.getYScaleFactor(getHeight());
+            double scaleFactor = model.getYScaleFactor(getHeight());
             double scaledSample = samples[t] * scaleFactor;
             int y = (int) ((getHeight() / 2) - (scaledSample));
             g.drawLine(oldX, oldY, xIndex, y);

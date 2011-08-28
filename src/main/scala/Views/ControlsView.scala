@@ -29,23 +29,21 @@ class ControlsView extends FlowPanel {
     horizontalTextPosition = Alignment.Center
   }
 
-  object saveSampleButton extends Button(Action("save sample") { 
-    VirtualCut.saveFileChooser.showDialog
-    }) {
+  object saveSampleButton extends Button("save sample") {
     icon = new ImageIcon(getClass.getResource("/Save.gif"))
     verticalTextPosition = Alignment.Bottom
     horizontalTextPosition = Alignment.Center
   }
-         
+
+  object zoomInButton extends Button("+") 
+  object zoomOutButton extends Button("-") 
+
   contents += pauseButton
   contents += playButton
   contents += stopButton
   contents += saveSampleButton
   
   object ZoomPanel extends GridPanel(2,0) {
-    object zoomInButton extends Button("+") 
-    object zoomOutButton extends Button("-") 
-    
     vGap = 3
     
     contents += zoomInButton

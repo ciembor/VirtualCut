@@ -15,7 +15,9 @@ import waveform.AudioInfo
 class TrackView(trackModel:TrackModel) {
 
   var scrollPane = new JScrollPane
+  
   class Container(trackModel:TrackModel) extends WaveformPanelContainer(trackModel:TrackModel)
+
   var container = new Container(trackModel)
 
   def setView(trackModel:TrackModel) {

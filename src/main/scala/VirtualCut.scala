@@ -27,7 +27,7 @@ object VirtualCut extends App {
   var parametersView = new ParametersView(parametersModel)
   
   var controlsView = new ControlsView()
-  var controlsController = new ControlsController(controlsView)
+  var controlsController = new ControlsController(trackModel, trackController, controlsView)
   
   
 //var parametersController = new ParametersController(parametersModel, parametersView)

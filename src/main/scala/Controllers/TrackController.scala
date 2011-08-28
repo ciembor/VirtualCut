@@ -22,6 +22,11 @@ class TrackController(trackModel: TrackModel, trackView: TrackView) {
     trackView.setView(trackModel)
   }
 
+  def setZoom(zoom: Double) {
+    trackModel.zoom = zoom
+    trackView.setView(trackModel)
+  }
+
   setFile(file)
   
 }
