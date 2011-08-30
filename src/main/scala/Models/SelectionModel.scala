@@ -13,15 +13,32 @@ class SelectionModel(parameters: ParametersModel, track:TrackModel) {
     if (track.getChannelSamplesNumber >= selectionSamplesNumber) {
       if (track.getChannelSamplesNumber - firstSample >= selectionSamplesNumber) {
         lastSample = firstSample + selectionSamplesNumber
+        return 0
       }
       else {
         lastSample = track.getChannelSamplesNumber
         firstSample = track.getChannelSamplesNumber - selectionSamplesNumber
+        return 0
       }
     } // if selection isn't longer then track
+    else {
+      return -1
+    }
   }
   
-  def setPosition(vector: Int) = {
+  def setPosition(vector: Long) = {
+    if (vector > 0) {
+      if (lastSample + vector <= track.getChannelSamplesNumber) {
+        firstSample += vector
+        lastSample += vector
+      }
+    }
+    else {
+      if (lastSample + vector >= 0) {
+        firstSample += vector
+        lastSample += vector
+      }
+    }
   }
   
 }
