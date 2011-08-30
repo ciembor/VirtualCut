@@ -12,4 +12,13 @@ class TrackModel(aiStream: AudioInputStream) extends AudioInfo(aiStream: AudioIn
   def getXScaleFactor(panelWidth:Int):Double = {
     panelWidth / ((samplesContainer(0).length).toDouble / zoom)
   }
+  
+  def getDuration():Double = {
+    var trackDuration:Double = 1000000 * audioInputStream.getFrameLength().toDouble / audioInputStream.getFormat().getFrameRate().toDouble
+    return trackDuration
+  }
+  
+  def getChannelSamplesNumber():Long = {
+    samplesContainer(0).length
+  }
 }

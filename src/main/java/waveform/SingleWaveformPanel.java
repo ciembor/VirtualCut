@@ -47,7 +47,7 @@ public class SingleWaveformPanel extends JPanel {
         int oldY = (int) (getHeight() / 2);
         int xIndex = 0;
 
-        int increment = model.getIncrement(model.getXScaleFactor((int)width));
+        int increment = model.getIncrement(model.getXScaleFactor(model.getWidth()));
     //    int increment = model.getIncrement();
         g.setColor(WAVEFORM_COLOR);
 

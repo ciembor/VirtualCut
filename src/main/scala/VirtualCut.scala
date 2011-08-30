@@ -16,15 +16,18 @@ object VirtualCut extends App {
   var file = new File("/home/ciembor/mr-magoo.wav");
   var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
  // var  file = new File("/home/ciembor/Alesis-Fusion-Bass-Loop.wav");
+ 
+  var parametersModel = new ParametersModel()
+  var parametersView = new ParametersView(parametersModel)
+  
+ // var selectionModel = new SelectionModel(parametersModel)
+ 
   var trackModel = new TrackModel(audioInputStream)
   var trackView = new TrackView(trackModel)
-  var trackController = new TrackController(trackModel, trackView)
+  var trackController = new TrackController(parametersModel, trackModel, trackView)
   
   object openFileChooser extends OpenFileChooser(trackController)
   object saveFileChooser extends SaveFileChooser(trackController)
-  
-  var parametersModel = new ParametersModel()
-  var parametersView = new ParametersView(parametersModel)
   
   var controlsView = new ControlsView()
   var controlsController = new ControlsController(trackModel, trackController, controlsView)
