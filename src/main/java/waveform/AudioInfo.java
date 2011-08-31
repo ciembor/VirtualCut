@@ -11,7 +11,8 @@ import javax.sound.sampled.AudioInputStream;
  * To change this template use File | Settings | File Templates.
  */
 public class AudioInfo {
-    private static final int NUM_BITS_PER_BYTE = 8;
+    protected static final int NUM_BITS_PER_BYTE = 8;
+
 
     protected AudioInputStream audioInputStream;
     protected int[][] samplesContainer;
@@ -23,6 +24,10 @@ public class AudioInfo {
 
     public AudioInfo(AudioInputStream aiStream) {
         setAudio(aiStream);
+    }
+
+    public int[][] getSamplesContainer() {
+      return samplesContainer;
     }
 
     public void setAudio(AudioInputStream aiStream) {
@@ -103,7 +108,7 @@ public class AudioInfo {
         return samplesContainer[channel];
     }
 
-    protected int getIncrement(double xScale) {
+    public int getIncrement(double xScale) {
         try {
             int increment = (int) (samplesContainer[0].length / (samplesContainer[0].length * xScale));
             return increment;

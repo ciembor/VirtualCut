@@ -18,7 +18,7 @@ class TrackModel(aiStream: AudioInputStream) extends AudioInfo(aiStream: AudioIn
     return trackDuration
   }
   
-  def getChannelSamplesNumber():Long = {
+  def getChannelSamplesNumber():Int = {
     samplesContainer(0).length
   }
 }
