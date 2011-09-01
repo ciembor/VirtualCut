@@ -12,6 +12,10 @@ class SelectionModel(parameters: ParametersModel, track:TrackModel) {
   def pixelToSample(pixel:Int):Int = {
     (pixel / track.getZoom).toInt
   }
+  
+  def point:Point = {
+    new Point(frameToPixel(firstFrame), 0)
+  }
 
   private def frameToPixel(frame:Int):Int = {
     (frame * track.getZoom).toInt
@@ -49,19 +53,14 @@ class SelectionModel(parameters: ParametersModel, track:TrackModel) {
     }
   }
   
-  def setPosition(vector: Int) = {
-    if (vector > 0) {
-      if (lastFrame + vector <= track.getChannelSamplesNumber) {
-        firstFrame += vector
-        lastFrame += vector
-      }
+  def setPosition(position: Double) = {
+    var pos = pixelToSample(position.toInt)
+    if (pos >= 0 && position.toInt <= max) {
+      var tmp = lastFrame - firstFrame
+      firstFrame = pos
+      lastFrame = pos + tmp
     }
-    else {
-      if (lastFrame + vector >= 0) {
-        firstFrame += vector
-        lastFrame += vector
-      }
-    }
+    println(firstFrame)
   }
   
   class SampleModel() {

@@ -33,6 +33,7 @@ public class DraggableComponent extends JComponent {
 
     /** If sets <b>TRUE</b> this component is draggable */
     private boolean draggable = true;
+    protected Point position;
     /** 2D Point representing the coordinate where mouse is, relative parent container */
     protected Point anchorPoint;
     /** Default mouse cursor for dragging action */
@@ -70,6 +71,7 @@ public class DraggableComponent extends JComponent {
     private void addDragListeners() {
         /** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
         final DraggableComponent handle = this;
+        
         addMouseMotionListener(new MouseAdapter() {
 
             @Override
@@ -80,6 +82,7 @@ public class DraggableComponent extends JComponent {
 
             @Override
             public void mouseDragged(MouseEvent e) {
+
                 int anchorX = anchorPoint.x;
                 int anchorY = anchorPoint.y;
 
@@ -89,8 +92,19 @@ public class DraggableComponent extends JComponent {
                 int x = mouseOnScreen.x - parentOnScreen.x - anchorX;
                 
                 if ((x > 0) && (x < selection.max())) {
-                  Point position = new Point(mouseOnScreen.x - parentOnScreen.x - anchorX, 0);
+                  position = new Point(mouseOnScreen.x - parentOnScreen.x - anchorX, 0);
                   setLocation(position);
+             //     selection.setPosition(mouseOnScreen.x - parentOnScreen.x - anchorX);
+                }
+                else if ( x < 0) {
+                  position = new Point(0,0);
+                  setLocation(position);
+              //    selection.setPosition(0);
+                }
+                else if (x > selection.max()) {
+                  position = new Point(selection.max(),0);
+                  setLocation(position);
+              //    selection.setPosition(selection.max());
                 }
                 
                 //Change Z-Buffer if it is "overbearing"
@@ -99,7 +113,22 @@ public class DraggableComponent extends JComponent {
                     repaint();
                 }
             }
+            
         });
+        
+      addMouseListener(new MouseAdapter() {
+        
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+            
+            @Override
+            public void mouseReleased(MouseEvent e) {
+              System.out.println("position: " + position.getX());
+                selection.setPosition(position.getX());
+            }
+            
+      });
     }
 
 

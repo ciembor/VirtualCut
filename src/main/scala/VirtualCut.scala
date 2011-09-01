@@ -8,32 +8,27 @@ import java.io._
 import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.AudioSystem
 import swing._
-  //import javax.swing.{UIManager}
+//import javax.swing.{UIManager}
 
 object VirtualCut extends App {
 
-
-  var file = new File("/home/ciembor/mr-magoo.wav");
-  var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
- // var  file = new File("/home/ciembor/Alesis-Fusion-Bass-Loop.wav");
+  var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (getClass.getResourceAsStream("/mr-magoo.wav")));
+ // ("/home/ciembor/Alesis-Fusion-Bass-Loop.wav");
  
   var parametersModel = new ParametersModel()
-  var parametersView = new ParametersView(parametersModel)
-  
+  var trackModel = new TrackModel(audioInputStream)
  // var selectionModel = new SelectionModel(parametersModel)
  
-  var trackModel = new TrackModel(audioInputStream)
+  var parametersView = new ParametersView(parametersModel)
   var trackView = new TrackView(trackModel)
-  var trackController = new TrackController(parametersModel, trackModel, trackView)
+  var controlsView = new ControlsView()
   
+  var trackController = new TrackController(parametersModel, trackModel, trackView)
+  var controlsController = new ControlsController(trackModel, trackController, controlsView)
+  var parametersController = new ParametersController(parametersModel, trackController, parametersView)
+
   object openFileChooser extends OpenFileChooser(trackController)
   object saveFileChooser extends SaveFileChooser(trackController)
-  
-  var controlsView = new ControlsView()
-  var controlsController = new ControlsController(trackModel, trackController, controlsView)
-  
-  
-//var parametersController = new ParametersController(parametersModel, parametersView)
   
   object Window extends MainFrame {
     title = "VirtualCut"

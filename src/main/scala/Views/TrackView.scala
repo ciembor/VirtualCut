@@ -18,23 +18,33 @@ class TrackView(trackModel:TrackModel) {
 
   var scrollPane = new JScrollPane
   var layeredPane = new JLayeredPane
+  var selectionPanel = new JPanel()
+  
+  layeredPane.add(selectionPanel, JLayeredPane.DRAG_LAYER)
+
+  selectionPanel.setOpaque(false)
+  selectionPanel.setLayout(null)
+  
   class Waveform(trackModel:TrackModel) extends WaveformPanelContainer(trackModel:TrackModel)
   
-  def setView(trackModel:TrackModel, selectionModel:SelectionModel) {
-   
-    var waveform = new Waveform(trackModel)
+  def setSelection(selectionModel:SelectionModel) {
+    selectionPanel.removeAll
     var selection = new SelectionView(selectionModel)
-    var selectionPanel = new JPanel()
+    selection.update
+    selectionPanel.setSize(trackModel.getSize())    
+    selectionPanel.add(selection)
+    scrollPane.repaint()
+  }
+  
+  def setView(trackModel:TrackModel, selectionModel:SelectionModel) {
+
+    var waveform = new Waveform(trackModel)
+    
+    setSelection(selectionModel)
     
     waveform.setAudioToDisplay(trackModel)
     
-    selectionPanel.setOpaque(false)
-    selectionPanel.setSize(trackModel.getSize())    
-    selectionPanel.setLayout(null)
-    selectionPanel.add(selection)
-    
     layeredPane.add(waveform, JLayeredPane.DEFAULT_LAYER)
-    layeredPane.add(selectionPanel, JLayeredPane.DRAG_LAYER)
     layeredPane.setPreferredSize(trackModel.getSize())
 
     scrollPane.setViewportView(layeredPane)

@@ -15,9 +15,14 @@ class TrackController(parameters:ParametersModel, trackModel: TrackModel, trackV
 
   var file = new File("/home/ciembor/mr-magoo.wav");
   
-  var selection = new SelectionModel(parameters, trackModel)
+  object selection extends SelectionModel(parameters, trackModel)
   selection.setLength(parameters)
 //  var scrollPane = new JScrollPane
+  
+  def setParameters(parameters:ParametersModel) {
+    selection.setLength(parameters)
+    trackView.setSelection(selection)
+  }
   
   def setFile(file: File) {
     var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
