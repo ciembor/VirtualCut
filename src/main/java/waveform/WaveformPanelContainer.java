@@ -19,6 +19,7 @@ public class WaveformPanelContainer extends JPanel {
     public WaveformPanelContainer(TrackModel trackModel) {
         setLayout(new GridLayout(0,1));
         this.trackModel = trackModel;
+        setSize();
     }
 
     public void setAudioToDisplay(TrackModel trackModel){
@@ -30,10 +31,16 @@ public class WaveformPanelContainer extends JPanel {
             SingleWaveformPanel waveformPanel
                     = new SingleWaveformPanel(trackModel, t);
             singleChannelWaveformPanels.add(waveformPanel);
-            add(createChannelDisplay(waveformPanel, t));
+            JComponent panel = createChannelDisplay(waveformPanel, t);
+            add(panel);
+            setSize();
         }
     }
 
+    private void setSize() {
+        this.setSize(trackModel.getSize());
+    }
+    
     private JComponent createChannelDisplay(SingleWaveformPanel waveformPanel, int index) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(waveformPanel, BorderLayout.CENTER);

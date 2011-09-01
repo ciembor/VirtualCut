@@ -5,7 +5,7 @@ import javax.swing.SpinnerNumberModel
 import javax.swing.DefaultComboBoxModel
 
 class ParametersModel {
-  val tempo = new SpinnerNumberModel(120:Double, 1, 300, 1)
+  val tempo = new SpinnerNumberModel(200:Double, 1, 300, 1)
   val metric_top = new SpinnerNumberModel(1, 1, 100, 1)
   val metric_bottom = new DefaultComboBoxModel(Array[java.lang.Object]("1", "2", "4", "8", "16", "32", "64", "128"))
 

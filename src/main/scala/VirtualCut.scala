@@ -42,7 +42,7 @@ object VirtualCut extends App {
 //    contents = new Panel() {
  //     preferredSize = new Dimension(800,400)
 //    }
-    preferredSize = new Dimension(800, 355)
+   // preferredSize = new Dimension(800, 355)
     menuBar = MenuBarView
     
     val container:BoxPanel = new BoxPanel(Orientation.Vertical) {

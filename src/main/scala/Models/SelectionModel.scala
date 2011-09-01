@@ -1,17 +1,32 @@
 package virtualcut
 package model
 
+import java.awt._
+
 class SelectionModel(parameters: ParametersModel, track:TrackModel) {
 
-  private var firstFrame:Int = 10
-  private var lastFrame:Int = 14
+  private var firstFrame:Int = 0
+  private var lastFrame:Int = 0
+  private var height = track.getSize.height
   
-  def frameToSample(pixel:Int):Int = {
-    (pixel / track.zoom).toInt
+  def pixelToSample(pixel:Int):Int = {
+    (pixel / track.getZoom).toInt
+  }
+
+  private def frameToPixel(frame:Int):Int = {
+    (frame * track.getZoom).toInt
   }
   
-  private def frameToPixel(frame:Int):Int = {
-    (frame * track.zoom).toInt
+  def size:Dimension = {
+    new Dimension(getLength, height);
+  }
+  
+  def getLength = {
+    frameToPixel(lastFrame - firstFrame)
+  }
+  
+  def max = {
+    track.getSize.width - getLength
   }
   
   def setLength(parameters: ParametersModel):Int = {
@@ -56,8 +71,6 @@ class SelectionModel(parameters: ParametersModel, track:TrackModel) {
     var channelsNumber = track.getNumberOfChannels()
     var framesNumber = lastFrame - firstFrame
     var frames = Array.ofDim[Int](channelsNumber, framesNumber)
-    System.out.println(frames.length);
-    System.out.println(frames(0).length);
     var trackFrames = track.getSamplesContainer()
 
     for (i <- 0 until channelsNumber) {
@@ -72,5 +85,28 @@ class SelectionModel(parameters: ParametersModel, track:TrackModel) {
   }
   
   getSample()
+  
+  /****************************** TEST *********************************
+   for(i <- 1 until 300) {
+    var selectionDuration:Double = (60000000 / i.toDouble).toDouble // microseconds
+    var selectionSamplesNumber:Int = ((selectionDuration * track.getChannelSamplesNumber) / track.getDuration).toInt
+    
+    if (track.getChannelSamplesNumber >= selectionSamplesNumber) {
+      if (track.getChannelSamplesNumber - firstFrame >= selectionSamplesNumber) {
+        lastFrame = firstFrame + selectionSamplesNumber
+        println(i + ": " + lastFrame + "    | length: " + getLength)
+      }
+      else {
+        lastFrame = track.getChannelSamplesNumber
+        firstFrame = track.getChannelSamplesNumber - selectionSamplesNumber
+        println(i + ": " + lastFrame + "    | length: " + getLength)
+      }
+    } // if selection isn't Inter then track
+    else {
+     println(i + ": error")
+    }
+   }
+  *********************************************************************/
+  
   
 }

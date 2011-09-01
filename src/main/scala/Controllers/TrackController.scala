@@ -22,14 +22,15 @@ class TrackController(parameters:ParametersModel, trackModel: TrackModel, trackV
   def setFile(file: File) {
     var audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream (new FileInputStream (file)));
     trackModel.setAudio(audioInputStream);
-    trackView.setView(trackModel)
+    trackView.setView(trackModel, selection)
   }
 
   def setZoom(zoom: Double) {
     trackModel.zoom = zoom
-    trackView.setView(trackModel)
+    trackView.setView(trackModel, selection)
   }
 
   setFile(file)
   
 }
+

@@ -2,12 +2,24 @@ package virtualcut
 package model
 
 import waveform.AudioInfo
+import java.awt._
+
 import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.AudioSystem
 import java.io._
 
 class TrackModel(aiStream: AudioInputStream) extends AudioInfo(aiStream: AudioInputStream) {
-  var zoom:Double = 0.5
+  var zoom:Double = 0.22
+  
+  def getZoom(): Double = {
+    return zoom
+  }
+  
+  def getSize(): Dimension = {
+    var width = (getWidth() * getZoom()).toInt;
+    var height = 200 * getNumberOfChannels();
+    return new Dimension(width, height);
+  }
   
   def getXScaleFactor(panelWidth:Int):Double = {
     panelWidth / ((samplesContainer(0).length).toDouble / zoom)
