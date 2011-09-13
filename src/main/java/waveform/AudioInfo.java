@@ -1,8 +1,14 @@
 package waveform;
 
 
-import javax.sound.sampled.AudioInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 /**
  * Created by IntelliJ IDEA.
  * User: Jonathan Simon
@@ -16,6 +22,7 @@ public class AudioInfo {
 
     protected AudioInputStream audioInputStream;
     protected int[][] samplesContainer;
+    public byte[] bytes;
 
     //cached values
     protected int sampleMax = 0;
@@ -24,6 +31,7 @@ public class AudioInfo {
 
     public AudioInfo(AudioInputStream aiStream) {
         setAudio(aiStream);
+        save();
     }
 
     public int[][] getSamplesContainer() {
@@ -48,7 +56,7 @@ public class AudioInfo {
         try {
             audioInputStream.mark(Integer.MAX_VALUE);
             audioInputStream.reset();
-            byte[] bytes = new byte[(int) (audioInputStream.getFrameLength()) * ((int) audioInputStream.getFormat().getFrameSize())];
+            bytes = new byte[(int) (audioInputStream.getFrameLength()) * ((int) audioInputStream.getFormat().getFrameSize())];
             int result = 0;
             try {
                 result = audioInputStream.read(bytes);
@@ -127,6 +135,45 @@ public class AudioInfo {
             e.printStackTrace();
         }
         return -1;
+    }
+    
+    public AudioFormat getFormat() {
+      return audioInputStream.getFormat();
+    }
+    
+    public long getFrameLength() {
+      return audioInputStream.getFrameLength();
+    }
+    
+    public void save()  {
+
+
+      File targetFile = new File("/home/ciembor/targ.wav");
+      
+      AudioFileFormat.Type	targetFileType = AudioFileFormat.Type.WAVE;
+      AudioFormat audioFormat = audioInputStream.getFormat();
+      
+            
+      AudioFileFormat fileFormat = new AudioFileFormat(targetFileType, audioFormat, (int)audioInputStream.getFrameLength()) ;
+      
+      byte[] samplebytes = new byte[(bytes.length/2) - 40000];
+
+      for (int i = 40000; i < bytes.length / 2; i++) {
+        samplebytes[i - 40000] = bytes[i];
+      }
+      ByteArrayInputStream bais = new ByteArrayInputStream(samplebytes);
+      AudioInputStream outputAIS = new AudioInputStream(bais, audioFormat, samplebytes.length / audioFormat.getFrameSize());
+      
+      try
+      {
+         AudioSystem.write(outputAIS, targetFileType, targetFile);
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+         System.out.println("Can't write audio to file.");
+      }
+
     }
 
 }

@@ -9,7 +9,7 @@ import javax.sound.sampled.AudioSystem
 import java.io._
 
 class TrackModel(aiStream: AudioInputStream) extends AudioInfo(aiStream: AudioInputStream) {
-  var zoom:Double = 0.22
+  var zoom:Double = 1
   
   def getZoom(): Double = {
     return zoom

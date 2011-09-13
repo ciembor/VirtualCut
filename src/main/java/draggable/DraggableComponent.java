@@ -124,7 +124,7 @@ public class DraggableComponent extends JComponent {
             
             @Override
             public void mouseReleased(MouseEvent e) {
-              System.out.println("position: " + position.getX());
+             // System.out.println("position: " + position.getX());
                 selection.setPosition(position.getX());
             }
             

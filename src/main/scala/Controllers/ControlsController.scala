@@ -17,11 +17,27 @@ class ControlsController(trackModel: TrackModel, trackController:TrackController
     if (trackModel.zoom <= 0.5)
     {
       trackController.setZoom(trackModel.zoom * 2)
+          println("zoom" + trackModel.getZoom);
+
     }
   }
   
   controlsView.zoomOutButton.action = Action(controlsView.zoomOutButton.text) { 
     trackController.setZoom(trackModel.zoom / 2)
+        println("zoom" + trackModel.getZoom);
+
+  }
+  
+  controlsView.playButton.action = Action(controlsView.playButton.text) { 
+    trackController.selection.play
+  }
+  
+  controlsView.pauseButton.action = Action(controlsView.pauseButton.text) { 
+    trackController.selection.stop
+  }
+  
+  controlsView.stopButton.action = Action(controlsView.stopButton.text) { 
+    trackController.selection.stop
   }
   
 }
